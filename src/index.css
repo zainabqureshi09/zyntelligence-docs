@@ -1,96 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Zyntelligence Custom Tokens */
+    --navy: 222 47% 11%;
+    --navy-light: 217 33% 17%;
+    --electric-blue: 217 91% 60%;
+    --electric-blue-glow: 217 91% 70%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    
+    /* Code Block Colors */
+    --code-bg: 220 14% 96%;
+    --code-border: 214 32% 91%;
+    --code-text: 222 47% 11%;
+    
+    /* Sidebar */
+    --sidebar-width: 280px;
+    --sidebar-bg: 210 40% 98%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-hover: 217 91% 60%;
+    --sidebar-active-bg: 217 91% 97%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222 47% 5%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222 47% 8%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 47% 8%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 217 33% 17%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+
+    /* Dark Mode Custom */
+    --code-bg: 222 47% 8%;
+    --code-border: 217 33% 17%;
+    --code-text: 210 40% 98%;
+    
+    --sidebar-bg: 222 47% 6%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-active-bg: 217 91% 15%;
   }
 }
 
@@ -99,7 +102,152 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html {
+    scroll-behavior: smooth;
   }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .doc-container {
+    @apply max-w-4xl mx-auto px-6 py-8;
+  }
+
+  .doc-heading {
+    @apply text-3xl font-bold text-foreground mb-6 tracking-tight;
+  }
+
+  .doc-subheading {
+    @apply text-2xl font-semibold text-foreground mt-8 mb-4;
+  }
+
+  .doc-paragraph {
+    @apply text-base text-muted-foreground leading-relaxed mb-4;
+  }
+
+  .doc-list {
+    @apply list-disc list-inside text-muted-foreground space-y-2 mb-4 ml-4;
+  }
+
+  .code-block {
+    @apply bg-code rounded-lg border border-code-border p-4 overflow-x-auto mb-6;
+  }
+
+  .inline-code {
+    @apply bg-muted text-foreground px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .sidebar-link {
+    @apply block px-4 py-2 text-sm text-muted-foreground rounded-md transition-all duration-200;
+  }
+
+  .sidebar-link:hover {
+    @apply bg-accent text-foreground;
+  }
+
+  .sidebar-link-active {
+    @apply bg-primary/10 text-primary font-medium border-l-2 border-primary;
+  }
+
+  .language-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-muted-foreground hover:text-foreground transition-colors;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(var(--navy-light)) 50%, hsl(var(--electric-blue) / 0.1) 100%);
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 40px hsl(var(--electric-blue) / 0.3);
+  }
+}
+
+@layer utilities {
+  .bg-code {
+    background-color: hsl(var(--code-bg));
+  }
+
+  .text-code {
+    color: hsl(var(--code-text));
+  }
+
+  .border-code-border {
+    border-color: hsl(var(--code-border));
+  }
+
+  .bg-sidebar {
+    background-color: hsl(var(--sidebar-bg));
+  }
+
+  .border-sidebar {
+    border-color: hsl(var(--sidebar-border));
+  }
+}
+
+/* Prism Theme Overrides */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: hsl(var(--muted-foreground));
+}
+
+.token.punctuation {
+  color: hsl(var(--foreground));
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: hsl(var(--destructive));
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: hsl(var(--success));
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: hsl(var(--warning));
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: hsl(var(--primary));
+}
+
+.token.function,
+.token.class-name {
+  color: hsl(217 91% 50%);
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: hsl(var(--warning));
 }
