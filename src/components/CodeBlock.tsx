@@ -5,6 +5,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-c';
 import 'prismjs/components/prism-cpp';
 import { Copy, Check } from 'lucide-react';
 import { useState } from 'react';
