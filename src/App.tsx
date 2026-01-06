@@ -25,6 +25,36 @@ import JavaScriptLoops from "./pages/docs/javascript/Loops";
 import JavaScriptFunctions from "./pages/docs/javascript/Functions";
 import JavaScriptExamples from "./pages/docs/javascript/Examples";
 
+// HTML docs
+import HTMLIntroduction from "./pages/docs/html/Introduction";
+import HTMLElements from "./pages/docs/html/Elements";
+import HTMLAttributes from "./pages/docs/html/Attributes";
+import HTMLExamples from "./pages/docs/html/Examples";
+
+// CSS docs
+import CSSIntroduction from "./pages/docs/css/Introduction";
+import CSSSelectors from "./pages/docs/css/Selectors";
+import CSSProperties from "./pages/docs/css/Properties";
+import CSSExamples from "./pages/docs/css/Examples";
+
+// C++ docs
+import CppIntroduction from "./pages/docs/cpp/Introduction";
+import CppSyntax from "./pages/docs/cpp/Syntax";
+import CppVariables from "./pages/docs/cpp/Variables";
+import CppConditions from "./pages/docs/cpp/Conditions";
+import CppLoops from "./pages/docs/cpp/Loops";
+import CppFunctions from "./pages/docs/cpp/Functions";
+import CppExamples from "./pages/docs/cpp/Examples";
+
+// Java docs
+import JavaIntroduction from "./pages/docs/java/Introduction";
+import JavaSyntax from "./pages/docs/java/Syntax";
+import JavaVariables from "./pages/docs/java/Variables";
+import JavaConditions from "./pages/docs/java/Conditions";
+import JavaLoops from "./pages/docs/java/Loops";
+import JavaFunctions from "./pages/docs/java/Functions";
+import JavaExamples from "./pages/docs/java/Examples";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -37,7 +67,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             
-            {/* Python Documentation */}
+            {/* Python */}
             <Route path="/docs/python/introduction" element={<PythonIntroduction />} />
             <Route path="/docs/python/syntax" element={<PythonSyntax />} />
             <Route path="/docs/python/variables" element={<PythonVariables />} />
@@ -46,7 +76,7 @@ const App = () => (
             <Route path="/docs/python/functions" element={<PythonFunctions />} />
             <Route path="/docs/python/examples" element={<PythonExamples />} />
             
-            {/* JavaScript Documentation */}
+            {/* JavaScript */}
             <Route path="/docs/javascript/introduction" element={<JavaScriptIntroduction />} />
             <Route path="/docs/javascript/syntax" element={<JavaScriptSyntax />} />
             <Route path="/docs/javascript/variables" element={<JavaScriptVariables />} />
@@ -54,6 +84,36 @@ const App = () => (
             <Route path="/docs/javascript/loops" element={<JavaScriptLoops />} />
             <Route path="/docs/javascript/functions" element={<JavaScriptFunctions />} />
             <Route path="/docs/javascript/examples" element={<JavaScriptExamples />} />
+            
+            {/* HTML */}
+            <Route path="/docs/html/introduction" element={<HTMLIntroduction />} />
+            <Route path="/docs/html/elements" element={<HTMLElements />} />
+            <Route path="/docs/html/attributes" element={<HTMLAttributes />} />
+            <Route path="/docs/html/examples" element={<HTMLExamples />} />
+            
+            {/* CSS */}
+            <Route path="/docs/css/introduction" element={<CSSIntroduction />} />
+            <Route path="/docs/css/selectors" element={<CSSSelectors />} />
+            <Route path="/docs/css/properties" element={<CSSProperties />} />
+            <Route path="/docs/css/examples" element={<CSSExamples />} />
+            
+            {/* C++ */}
+            <Route path="/docs/cpp/introduction" element={<CppIntroduction />} />
+            <Route path="/docs/cpp/syntax" element={<CppSyntax />} />
+            <Route path="/docs/cpp/variables" element={<CppVariables />} />
+            <Route path="/docs/cpp/conditions" element={<CppConditions />} />
+            <Route path="/docs/cpp/loops" element={<CppLoops />} />
+            <Route path="/docs/cpp/functions" element={<CppFunctions />} />
+            <Route path="/docs/cpp/examples" element={<CppExamples />} />
+            
+            {/* Java */}
+            <Route path="/docs/java/introduction" element={<JavaIntroduction />} />
+            <Route path="/docs/java/syntax" element={<JavaSyntax />} />
+            <Route path="/docs/java/variables" element={<JavaVariables />} />
+            <Route path="/docs/java/conditions" element={<JavaConditions />} />
+            <Route path="/docs/java/loops" element={<JavaLoops />} />
+            <Route path="/docs/java/functions" element={<JavaFunctions />} />
+            <Route path="/docs/java/examples" element={<JavaExamples />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
