@@ -130,7 +130,6 @@ This project uses a modern, scalable, and developer-friendly stack:
 
 ### Installation Steps
 
-```sh
 # Clone the repository
 git clone https://github.com/zainabqureshi09/Zyntelligence-book
 
@@ -222,7 +221,7 @@ Certification-ready learning paths
 
 👤 Author
 
-##**Zainab Ayaz**
+#Zainab Ayaz
 
 Creator & Maintainer of Future IT Documentation
 
