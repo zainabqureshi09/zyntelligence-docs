@@ -28,6 +28,9 @@ export function Navbar() {
             <Link to="/docs/python/examples" className="nav-link">
               Examples
             </Link>
+            <Link to="/about" className="nav-link">
+              About
+            </Link>
           </nav>
         </div>
 
@@ -72,6 +75,13 @@ export function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Examples
+            </Link>
+            <Link
+              to="/about"
+              className="sidebar-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About
             </Link>
           </nav>
         </div>
