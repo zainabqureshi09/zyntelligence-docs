@@ -9,8 +9,7 @@ This project aims to bridge the gap between **theory and industry-ready skills**
 
 ## 🌐 Live Website
 
-**Website:** https://yourdomain.com  
-*(Replace with your actual production URL)*
+**Website:** [https://zyntelligence.com ](https://zyntelligence-docs.vercel.app/) 
 
 ---
 
