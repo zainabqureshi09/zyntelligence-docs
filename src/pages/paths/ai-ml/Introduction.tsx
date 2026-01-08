@@ -144,7 +144,7 @@ model.fit(X_train, y_train)
 # Make predictions
 new_house = [[1800]]
 predicted_price = model.predict(new_house)
-print(f"Predicted price for 1800 sq ft: ${predicted_price[0]:.2f}k")
+print(f"Predicted price for 1800 sq ft: {predicted_price[0]:.2f}k")
 
 # Check model accuracy
 score = model.score(X_test, y_test)
