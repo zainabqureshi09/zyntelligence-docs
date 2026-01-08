@@ -221,7 +221,7 @@ Certification-ready learning paths
 
 👤 Author
 
-#Zainab Ayaz
+# Zainab Ayaz
 
 Creator & Maintainer of Future IT Documentation
 
