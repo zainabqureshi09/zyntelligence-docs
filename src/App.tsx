@@ -55,6 +55,13 @@ import JavaLoops from "./pages/docs/java/Loops";
 import JavaFunctions from "./pages/docs/java/Functions";
 import JavaExamples from "./pages/docs/java/Examples";
 
+// AI/ML Path
+import AIMLIntroduction from "./pages/paths/ai-ml/Introduction";
+import MathFoundations from "./pages/paths/ai-ml/MathFoundations";
+import SupervisedLearning from "./pages/paths/ai-ml/SupervisedLearning";
+import DeepLearning from "./pages/paths/ai-ml/DeepLearning";
+import AIMLProjects from "./pages/paths/ai-ml/Projects";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -114,6 +121,13 @@ const App = () => (
             <Route path="/docs/java/loops" element={<JavaLoops />} />
             <Route path="/docs/java/functions" element={<JavaFunctions />} />
             <Route path="/docs/java/examples" element={<JavaExamples />} />
+            
+            {/* AI/ML Path */}
+            <Route path="/paths/ai-ml/introduction" element={<AIMLIntroduction />} />
+            <Route path="/paths/ai-ml/math-foundations" element={<MathFoundations />} />
+            <Route path="/paths/ai-ml/supervised-learning" element={<SupervisedLearning />} />
+            <Route path="/paths/ai-ml/deep-learning" element={<DeepLearning />} />
+            <Route path="/paths/ai-ml/projects" element={<AIMLProjects />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
