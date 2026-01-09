@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
-import { ArrowRight, BookOpen, Code, Zap, Brain, Rocket, Shield, Cloud, Database, Globe, Cpu, Layers } from 'lucide-react';
+import { WhatsNew } from '@/components/WhatsNew';
+import { ArrowRight, BookOpen, Code, Zap, Brain, Rocket, Shield, Cloud, Database, Globe, Cpu, Layers, Search, CheckCircle2, Users, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { SearchDialog } from '@/components/SearchDialog';
 
 const languages = [
   { name: 'Python', icon: '🐍', color: 'from-yellow-400 to-yellow-600', href: '/docs/python/introduction' },
@@ -23,42 +26,89 @@ const learningPaths = [
   { name: 'Emerging Tech', icon: Rocket, color: 'from-fuchsia-500 to-pink-600', href: '/paths/emerging/introduction', description: 'AR/VR and Quantum Computing', topics: ['AR/VR', 'Quantum Basics'] },
 ];
 
+const features = [
+  { icon: BookOpen, title: 'Beginner Friendly', description: 'Start from zero with clear explanations' },
+  { icon: Code, title: 'Hands-on Examples', description: 'Learn by doing with real code' },
+  { icon: Rocket, title: 'Career Paths', description: '8 structured learning tracks' },
+  { icon: Star, title: 'Free Forever', description: 'No paywalls or subscriptions' },
+];
+
 export default function Index() {
+  const [searchOpen, setSearchOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+      <Navbar onSearchOpen={() => setSearchOpen(true)} />
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
       
+      {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 hero-gradient opacity-5" />
-        <div className="container relative py-24 md:py-32 px-4">
-          <div className="max-w-3xl mx-auto text-center animate-fade-in">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+        
+        <div className="container relative py-20 md:py-28 px-4">
+          <div className="max-w-4xl mx-auto text-center animate-fade-in">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <Zap className="w-4 h-4" />
-              Learn Programming. Intelligently.
+              Free. Beginner-Friendly. Industry-Ready.
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
-              Master Modern Tech with <span className="text-primary">Zyntelligence</span>
+              Learn Modern Tech with{' '}
+              <span className="text-primary bg-clip-text">Zyntelligence</span>
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
               From programming basics to AI, Cloud, and beyond. A beginner-friendly platform designed to take you from zero to industry-ready.
             </p>
             
+            {/* Search Bar */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="w-full max-w-lg mx-auto mb-8 flex items-center gap-3 px-4 py-3 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors text-left group"
+            >
+              <Search className="h-5 w-5 text-muted-foreground" />
+              <span className="flex-1 text-muted-foreground">Search documentation...</span>
+              <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded-md bg-muted text-xs text-muted-foreground border border-border">
+                ⌘K
+              </kbd>
+            </button>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-base">
-                <Link to="/paths/ai-ml/introduction">
-                  Start Learning <ArrowRight className="ml-2 h-5 w-5" />
+                <Link to="/getting-started">
+                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-base">
-                <Link to="/docs/python/introduction">Learn Programming First</Link>
+                <Link to="/docs/python/introduction">Browse Documentation</Link>
               </Button>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Features */}
+      <section className="py-12 border-b border-border">
+        <div className="container px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {features.map((feature) => (
+              <div key={feature.title} className="text-center">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                  <feature.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="font-semibold text-foreground text-sm mb-1">{feature.title}</h3>
+                <p className="text-xs text-muted-foreground">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What's New */}
+      <WhatsNew />
+
+      {/* Career Paths */}
       <section className="py-20 bg-muted/30">
         <div className="container px-4">
           <div className="text-center mb-12">
@@ -88,6 +138,7 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Languages */}
       <section className="py-20">
         <div className="container px-4">
           <div className="text-center mb-12">
@@ -106,16 +157,51 @@ export default function Index() {
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-b from-muted/30 to-background">
+        <div className="container px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Start Learning?</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Join thousands of learners mastering programming and modern tech skills.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg">
+                <Link to="/getting-started">
+                  Start Your Journey <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link to="/resources">
+                  View Resources
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
       <footer className="border-t border-border py-12">
         <div className="container px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
                 <span className="text-primary-foreground font-bold">Z</span>
               </div>
               <span className="font-bold text-foreground">Zyntelligence</span>
             </div>
-            <p className="text-sm text-muted-foreground">Learn Programming. Intelligently.</p>
+            
+            <nav className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+              <Link to="/getting-started" className="hover:text-foreground transition-colors">Getting Started</Link>
+              <Link to="/docs/python/introduction" className="hover:text-foreground transition-colors">Documentation</Link>
+              <Link to="/resources" className="hover:text-foreground transition-colors">Resources</Link>
+              <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
+            </nav>
+            
+            <p className="text-sm text-muted-foreground">
+              © 2026 Zyntelligence. Free and open for learning.
+            </p>
           </div>
         </div>
       </footer>

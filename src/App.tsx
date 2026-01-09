@@ -62,6 +62,12 @@ import SupervisedLearning from "./pages/paths/ai-ml/SupervisedLearning";
 import DeepLearning from "./pages/paths/ai-ml/DeepLearning";
 import AIMLProjects from "./pages/paths/ai-ml/Projects";
 
+// Pages
+import GettingStarted from "./pages/GettingStarted";
+import Resources from "./pages/Resources";
+import DeepLearning from "./pages/paths/ai-ml/DeepLearning";
+import AIMLProjects from "./pages/paths/ai-ml/Projects";
+
 // About
 import About from "./pages/About";
 
