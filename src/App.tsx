@@ -65,10 +65,6 @@ import AIMLProjects from "./pages/paths/ai-ml/Projects";
 // Pages
 import GettingStarted from "./pages/GettingStarted";
 import Resources from "./pages/Resources";
-import DeepLearning from "./pages/paths/ai-ml/DeepLearning";
-import AIMLProjects from "./pages/paths/ai-ml/Projects";
-
-// About
 import About from "./pages/About";
 
 const queryClient = new QueryClient();
@@ -137,6 +133,10 @@ const App = () => (
             <Route path="/paths/ai-ml/supervised-learning" element={<SupervisedLearning />} />
             <Route path="/paths/ai-ml/deep-learning" element={<DeepLearning />} />
             <Route path="/paths/ai-ml/projects" element={<AIMLProjects />} />
+
+            {/* Pages */}
+            <Route path="/getting-started" element={<GettingStarted />} />
+            <Route path="/resources" element={<Resources />} />
             
             {/* About */}
             <Route path="/about" element={<About />} />
