@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Fuse from 'fuse.js';
-import { Search, FileText, Book, Rocket, ArrowRight } from 'lucide-react';
+import { Search, FileText, Book, Rocket, ArrowRight, Sparkles, Loader2, Zap } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -9,6 +9,8 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface SearchItem {
   title: string;
@@ -16,6 +18,20 @@ interface SearchItem {
   href: string;
   category: string;
   icon: 'doc' | 'path' | 'guide';
+}
+
+interface AISearchResult {
+  path: string;
+  title: string;
+  category: string;
+  relevance: string;
+  snippet: string;
+}
+
+interface AISearchResponse {
+  results: AISearchResult[];
+  aiSummary: string;
+  error?: string;
 }
 
 const searchData: SearchItem[] = [
@@ -93,17 +109,72 @@ interface SearchDialogProps {
 
 export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   const [query, setQuery] = useState('');
+  const [isAISearch, setIsAISearch] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [aiResults, setAiResults] = useState<AISearchResponse | null>(null);
   const navigate = useNavigate();
+  const { toast } = useToast();
 
-  const results = useMemo(() => {
+  // Regular fuzzy search results
+  const fuzzyResults = useMemo(() => {
     if (!query.trim()) return searchData.slice(0, 8);
     return fuse.search(query).map(result => result.item);
   }, [query]);
+
+  // Detect if query looks like a natural language question
+  const isNaturalLanguageQuery = useMemo(() => {
+    const questionWords = ['how', 'what', 'why', 'when', 'where', 'which', 'can', 'do', 'does', 'is', 'are', 'should', 'would', 'could', 'explain', 'show', 'tell', 'help'];
+    const lowerQuery = query.toLowerCase().trim();
+    return questionWords.some(word => lowerQuery.startsWith(word)) || query.includes('?') || query.split(' ').length > 3;
+  }, [query]);
+
+  // Debounced AI search
+  const performAISearch = useCallback(async (searchQuery: string) => {
+    if (!searchQuery.trim() || searchQuery.length < 5) return;
+    
+    setIsLoading(true);
+    setAiResults(null);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('ai-search', {
+        body: { query: searchQuery }
+      });
+
+      if (error) {
+        console.error('AI search error:', error);
+        toast({
+          title: 'AI Search unavailable',
+          description: 'Using regular search instead.',
+          variant: 'destructive'
+        });
+        return;
+      }
+
+      setAiResults(data as AISearchResponse);
+    } catch (err) {
+      console.error('AI search failed:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [toast]);
+
+  // Trigger AI search when user types a natural language query
+  useEffect(() => {
+    if (!isAISearch || !query.trim()) return;
+    
+    const timeoutId = setTimeout(() => {
+      performAISearch(query);
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [query, isAISearch, performAISearch]);
 
   const handleSelect = (href: string) => {
     navigate(href);
     onOpenChange(false);
     setQuery('');
+    setAiResults(null);
+    setIsAISearch(false);
   };
 
   useEffect(() => {
@@ -118,6 +189,16 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open, onOpenChange]);
 
+  // Reset when dialog closes
+  useEffect(() => {
+    if (!open) {
+      setQuery('');
+      setAiResults(null);
+      setIsAISearch(false);
+      setIsLoading(false);
+    }
+  }, [open]);
+
   const getIcon = (icon: string) => {
     switch (icon) {
       case 'path': return <Rocket className="h-4 w-4 text-primary" />;
@@ -126,55 +207,164 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
     }
   };
 
+  const getCategoryIcon = (category: string) => {
+    if (category === 'Learning Paths') return <Rocket className="h-4 w-4 text-primary" />;
+    if (category === 'Guides') return <Book className="h-4 w-4 text-success" />;
+    return <FileText className="h-4 w-4 text-muted-foreground" />;
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[550px] p-0 gap-0">
+      <DialogContent className="sm:max-w-[600px] p-0 gap-0 overflow-hidden">
         <DialogHeader className="p-4 border-b border-border">
           <DialogTitle className="sr-only">Search documentation</DialogTitle>
           <div className="flex items-center gap-3">
-            <Search className="h-5 w-5 text-muted-foreground" />
+            {isLoading ? (
+              <Loader2 className="h-5 w-5 text-primary animate-spin" />
+            ) : isAISearch ? (
+              <Sparkles className="h-5 w-5 text-primary" />
+            ) : (
+              <Search className="h-5 w-5 text-muted-foreground" />
+            )}
             <Input
-              placeholder="Search documentation..."
+              placeholder={isAISearch ? "Ask anything about the docs..." : "Search documentation..."}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="border-0 p-0 h-auto text-base focus-visible:ring-0 focus-visible:ring-offset-0"
               autoFocus
             />
+            <button
+              onClick={() => setIsAISearch(!isAISearch)}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
+                isAISearch 
+                  ? 'bg-primary text-primary-foreground' 
+                  : 'bg-muted text-muted-foreground hover:bg-accent'
+              }`}
+            >
+              <Sparkles className="h-3 w-3" />
+              AI
+            </button>
             <kbd className="hidden sm:inline-flex h-5 items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
               ESC
             </kbd>
           </div>
         </DialogHeader>
         
+        {/* AI Summary */}
+        {isAISearch && aiResults?.aiSummary && (
+          <div className="px-4 py-3 bg-primary/5 border-b border-border">
+            <div className="flex items-start gap-2">
+              <Zap className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-foreground leading-relaxed">
+                {aiResults.aiSummary}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Loading state */}
+        {isLoading && (
+          <div className="px-4 py-8 text-center">
+            <Loader2 className="h-8 w-8 text-primary animate-spin mx-auto mb-3" />
+            <p className="text-sm text-muted-foreground">Searching with AI...</p>
+          </div>
+        )}
+        
         <div className="max-h-[400px] overflow-y-auto p-2">
-          {results.length === 0 ? (
-            <div className="py-8 text-center text-muted-foreground">
-              No results found for "{query}"
-            </div>
-          ) : (
-            <div className="space-y-1">
-              {results.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => handleSelect(item.href)}
-                  className="w-full flex items-center gap-3 p-3 rounded-lg text-left hover:bg-accent transition-colors group"
-                >
-                  {getIcon(item.icon)}
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium text-foreground truncate">
-                      {item.title}
-                    </div>
-                    <div className="text-sm text-muted-foreground truncate">
-                      {item.description}
-                    </div>
-                  </div>
-                  <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-                    {item.category}
-                  </span>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                </button>
-              ))}
-            </div>
+          {/* AI Search Results */}
+          {isAISearch && !isLoading && aiResults && (
+            <>
+              {aiResults.results.length === 0 ? (
+                <div className="py-8 text-center text-muted-foreground">
+                  <Sparkles className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                  <p>No matching documentation found.</p>
+                  <p className="text-xs mt-1">Try rephrasing your question.</p>
+                </div>
+              ) : (
+                <div className="space-y-1">
+                  {aiResults.results.map((item) => (
+                    <button
+                      key={item.path}
+                      onClick={() => handleSelect(item.path)}
+                      className="w-full flex items-start gap-3 p-3 rounded-lg text-left hover:bg-accent transition-colors group"
+                    >
+                      {getCategoryIcon(item.category)}
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-foreground truncate">
+                          {item.title}
+                        </div>
+                        <div className="text-sm text-muted-foreground line-clamp-2">
+                          {item.snippet}
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-end gap-1">
+                        <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                          {item.category}
+                        </span>
+                        {item.relevance === 'high' && (
+                          <span className="text-[10px] text-primary font-medium">Best match</span>
+                        )}
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity mt-1" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+
+          {/* Regular Search Results */}
+          {!isAISearch && !isLoading && (
+            <>
+              {fuzzyResults.length === 0 ? (
+                <div className="py-8 text-center text-muted-foreground">
+                  No results found for "{query}"
+                </div>
+              ) : (
+                <div className="space-y-1">
+                  {/* Show AI search hint for natural language queries */}
+                  {isNaturalLanguageQuery && query.length > 5 && (
+                    <button
+                      onClick={() => setIsAISearch(true)}
+                      className="w-full flex items-center gap-3 p-3 mb-2 rounded-lg text-left bg-primary/5 hover:bg-primary/10 border border-primary/20 transition-colors"
+                    >
+                      <Sparkles className="h-5 w-5 text-primary" />
+                      <div className="flex-1">
+                        <div className="font-medium text-foreground">
+                          Try AI Search
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          Get intelligent answers to your question
+                        </div>
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-primary" />
+                    </button>
+                  )}
+                  
+                  {fuzzyResults.map((item) => (
+                    <button
+                      key={item.href}
+                      onClick={() => handleSelect(item.href)}
+                      className="w-full flex items-center gap-3 p-3 rounded-lg text-left hover:bg-accent transition-colors group"
+                    >
+                      {getIcon(item.icon)}
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium text-foreground truncate">
+                          {item.title}
+                        </div>
+                        <div className="text-sm text-muted-foreground truncate">
+                          {item.description}
+                        </div>
+                      </div>
+                      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                        {item.category}
+                      </span>
+                      <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </div>
         
@@ -183,18 +373,23 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
             <span className="flex items-center gap-1">
               <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">↑</kbd>
               <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">↓</kbd>
-              to navigate
+              navigate
             </span>
             <span className="flex items-center gap-1">
               <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">↵</kbd>
-              to select
+              select
             </span>
           </div>
-          <span className="flex items-center gap-1">
-            <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">⌘</kbd>
-            <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">K</kbd>
-            to search
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1">
+              <Sparkles className="h-3 w-3" />
+              AI search
+            </span>
+            <span className="flex items-center gap-1">
+              <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">⌘</kbd>
+              <kbd className="px-1.5 py-0.5 bg-muted rounded border border-border">K</kbd>
+            </span>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
