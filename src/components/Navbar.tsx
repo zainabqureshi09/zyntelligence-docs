@@ -1,12 +1,61 @@
 import { Link } from 'react-router-dom';
-import { Moon, Sun, Menu, X, Search, Github } from 'lucide-react';
+import { Moon, Sun, Menu, X, Search, Github, User, Shield, LogOut } from 'lucide-react';
 import { useTheme } from '@/lib/theme';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { SearchDialog } from '@/components/SearchDialog';
+import { useAuth } from '@/contexts/AuthContext';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 interface NavbarProps {
   onSearchOpen?: () => void;
+}
+
+function UserMenu() {
+  const { user, profile, isEditor, signOut } = useAuth();
+  
+  if (!user) {
+    return (
+      <Link to="/auth">
+        <Button variant="outline" size="sm">Sign In</Button>
+      </Link>
+    );
+  }
+  
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon">
+          <User className="h-5 w-5" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <div className="px-2 py-1.5 text-sm">
+          <p className="font-medium">{profile?.full_name || 'User'}</p>
+          <p className="text-muted-foreground text-xs">{user.email}</p>
+        </div>
+        <DropdownMenuSeparator />
+        {isEditor && (
+          <DropdownMenuItem asChild>
+            <Link to="/admin" className="flex items-center gap-2 cursor-pointer">
+              <Shield className="w-4 h-4" />
+              Admin Dashboard
+            </Link>
+          </DropdownMenuItem>
+        )}
+        <DropdownMenuItem onClick={signOut} className="cursor-pointer">
+          <LogOut className="w-4 h-4 mr-2" />
+          Sign Out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 }
 
 export function Navbar({ onSearchOpen }: NavbarProps) {
@@ -80,6 +129,8 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
                 <Moon className="h-5 w-5" />
               )}
             </Button>
+
+            <UserMenu />
 
             <Button
               variant="ghost"

@@ -4,8 +4,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/lib/theme";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { AIChatAssistant } from "@/components/AIChatAssistant";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Auth from "./pages/Auth";
 
 // Python docs
 import PythonIntroduction from "./pages/docs/python/Introduction";
@@ -67,84 +70,96 @@ import GettingStarted from "./pages/GettingStarted";
 import Resources from "./pages/Resources";
 import About from "./pages/About";
 
+// Admin
+import AdminDashboard from "./pages/admin/Dashboard";
+import DocEditor from "./pages/admin/DocEditor";
+
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            
-            {/* Python */}
-            <Route path="/docs/python/introduction" element={<PythonIntroduction />} />
-            <Route path="/docs/python/syntax" element={<PythonSyntax />} />
-            <Route path="/docs/python/variables" element={<PythonVariables />} />
-            <Route path="/docs/python/conditions" element={<PythonConditions />} />
-            <Route path="/docs/python/loops" element={<PythonLoops />} />
-            <Route path="/docs/python/functions" element={<PythonFunctions />} />
-            <Route path="/docs/python/examples" element={<PythonExamples />} />
-            
-            {/* JavaScript */}
-            <Route path="/docs/javascript/introduction" element={<JavaScriptIntroduction />} />
-            <Route path="/docs/javascript/syntax" element={<JavaScriptSyntax />} />
-            <Route path="/docs/javascript/variables" element={<JavaScriptVariables />} />
-            <Route path="/docs/javascript/conditions" element={<JavaScriptConditions />} />
-            <Route path="/docs/javascript/loops" element={<JavaScriptLoops />} />
-            <Route path="/docs/javascript/functions" element={<JavaScriptFunctions />} />
-            <Route path="/docs/javascript/examples" element={<JavaScriptExamples />} />
-            
-            {/* HTML */}
-            <Route path="/docs/html/introduction" element={<HTMLIntroduction />} />
-            <Route path="/docs/html/elements" element={<HTMLElements />} />
-            <Route path="/docs/html/attributes" element={<HTMLAttributes />} />
-            <Route path="/docs/html/examples" element={<HTMLExamples />} />
-            
-            {/* CSS */}
-            <Route path="/docs/css/introduction" element={<CSSIntroduction />} />
-            <Route path="/docs/css/selectors" element={<CSSSelectors />} />
-            <Route path="/docs/css/properties" element={<CSSProperties />} />
-            <Route path="/docs/css/examples" element={<CSSExamples />} />
-            
-            {/* C++ */}
-            <Route path="/docs/cpp/introduction" element={<CppIntroduction />} />
-            <Route path="/docs/cpp/syntax" element={<CppSyntax />} />
-            <Route path="/docs/cpp/variables" element={<CppVariables />} />
-            <Route path="/docs/cpp/conditions" element={<CppConditions />} />
-            <Route path="/docs/cpp/loops" element={<CppLoops />} />
-            <Route path="/docs/cpp/functions" element={<CppFunctions />} />
-            <Route path="/docs/cpp/examples" element={<CppExamples />} />
-            
-            {/* Java */}
-            <Route path="/docs/java/introduction" element={<JavaIntroduction />} />
-            <Route path="/docs/java/syntax" element={<JavaSyntax />} />
-            <Route path="/docs/java/variables" element={<JavaVariables />} />
-            <Route path="/docs/java/conditions" element={<JavaConditions />} />
-            <Route path="/docs/java/loops" element={<JavaLoops />} />
-            <Route path="/docs/java/functions" element={<JavaFunctions />} />
-            <Route path="/docs/java/examples" element={<JavaExamples />} />
-            
-            {/* AI/ML Path */}
-            <Route path="/paths/ai-ml/introduction" element={<AIMLIntroduction />} />
-            <Route path="/paths/ai-ml/math-foundations" element={<MathFoundations />} />
-            <Route path="/paths/ai-ml/supervised-learning" element={<SupervisedLearning />} />
-            <Route path="/paths/ai-ml/deep-learning" element={<DeepLearning />} />
-            <Route path="/paths/ai-ml/projects" element={<AIMLProjects />} />
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              
+              {/* Admin */}
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/docs/:id" element={<DocEditor />} />
+              
+              {/* Python */}
+              <Route path="/docs/python/introduction" element={<PythonIntroduction />} />
+              <Route path="/docs/python/syntax" element={<PythonSyntax />} />
+              <Route path="/docs/python/variables" element={<PythonVariables />} />
+              <Route path="/docs/python/conditions" element={<PythonConditions />} />
+              <Route path="/docs/python/loops" element={<PythonLoops />} />
+              <Route path="/docs/python/functions" element={<PythonFunctions />} />
+              <Route path="/docs/python/examples" element={<PythonExamples />} />
+              
+              {/* JavaScript */}
+              <Route path="/docs/javascript/introduction" element={<JavaScriptIntroduction />} />
+              <Route path="/docs/javascript/syntax" element={<JavaScriptSyntax />} />
+              <Route path="/docs/javascript/variables" element={<JavaScriptVariables />} />
+              <Route path="/docs/javascript/conditions" element={<JavaScriptConditions />} />
+              <Route path="/docs/javascript/loops" element={<JavaScriptLoops />} />
+              <Route path="/docs/javascript/functions" element={<JavaScriptFunctions />} />
+              <Route path="/docs/javascript/examples" element={<JavaScriptExamples />} />
+              
+              {/* HTML */}
+              <Route path="/docs/html/introduction" element={<HTMLIntroduction />} />
+              <Route path="/docs/html/elements" element={<HTMLElements />} />
+              <Route path="/docs/html/attributes" element={<HTMLAttributes />} />
+              <Route path="/docs/html/examples" element={<HTMLExamples />} />
+              
+              {/* CSS */}
+              <Route path="/docs/css/introduction" element={<CSSIntroduction />} />
+              <Route path="/docs/css/selectors" element={<CSSSelectors />} />
+              <Route path="/docs/css/properties" element={<CSSProperties />} />
+              <Route path="/docs/css/examples" element={<CSSExamples />} />
+              
+              {/* C++ */}
+              <Route path="/docs/cpp/introduction" element={<CppIntroduction />} />
+              <Route path="/docs/cpp/syntax" element={<CppSyntax />} />
+              <Route path="/docs/cpp/variables" element={<CppVariables />} />
+              <Route path="/docs/cpp/conditions" element={<CppConditions />} />
+              <Route path="/docs/cpp/loops" element={<CppLoops />} />
+              <Route path="/docs/cpp/functions" element={<CppFunctions />} />
+              <Route path="/docs/cpp/examples" element={<CppExamples />} />
+              
+              {/* Java */}
+              <Route path="/docs/java/introduction" element={<JavaIntroduction />} />
+              <Route path="/docs/java/syntax" element={<JavaSyntax />} />
+              <Route path="/docs/java/variables" element={<JavaVariables />} />
+              <Route path="/docs/java/conditions" element={<JavaConditions />} />
+              <Route path="/docs/java/loops" element={<JavaLoops />} />
+              <Route path="/docs/java/functions" element={<JavaFunctions />} />
+              <Route path="/docs/java/examples" element={<JavaExamples />} />
+              
+              {/* AI/ML Path */}
+              <Route path="/paths/ai-ml/introduction" element={<AIMLIntroduction />} />
+              <Route path="/paths/ai-ml/math-foundations" element={<MathFoundations />} />
+              <Route path="/paths/ai-ml/supervised-learning" element={<SupervisedLearning />} />
+              <Route path="/paths/ai-ml/deep-learning" element={<DeepLearning />} />
+              <Route path="/paths/ai-ml/projects" element={<AIMLProjects />} />
 
-            {/* Pages */}
-            <Route path="/getting-started" element={<GettingStarted />} />
-            <Route path="/resources" element={<Resources />} />
-            
-            {/* About */}
-            <Route path="/about" element={<About />} />
-            
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+              {/* Pages */}
+              <Route path="/getting-started" element={<GettingStarted />} />
+              <Route path="/resources" element={<Resources />} />
+              
+              {/* About */}
+              <Route path="/about" element={<About />} />
+              
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <AIChatAssistant />
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
