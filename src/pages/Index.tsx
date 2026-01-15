@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { WhatsNew } from '@/components/WhatsNew';
-import { ArrowRight, BookOpen, Code, Zap, Brain, Rocket, Shield, Cloud, Database, Globe, Cpu, Layers, Search, CheckCircle2, Users, Star } from 'lucide-react';
+import { ArrowRight, BookOpen, Code, Zap, Brain, Rocket, Shield, Cloud, Database, Globe, Cpu, Layers, Search, Star, FileCode, Lock, Map, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { SearchDialog } from '@/components/SearchDialog';
@@ -33,6 +33,15 @@ const features = [
   { icon: Star, title: 'Free Forever', description: 'No paywalls or subscriptions' },
 ];
 
+const quickLinks = [
+  { title: 'Architecture', description: 'System design overview', icon: Layers, href: '/architecture' },
+  { title: 'API Reference', description: 'Complete API docs', icon: FileCode, href: '/api-reference' },
+  { title: 'Security', description: 'Best practices guide', icon: Lock, href: '/security' },
+  { title: 'Roadmap', description: 'What\'s coming next', icon: Map, href: '/roadmap' },
+  { title: 'Tutorials', description: 'Step-by-step guides', icon: BookOpen, href: '/tutorials' },
+  { title: 'FAQ', description: 'Common questions', icon: HelpCircle, href: '/faq' },
+];
+
 export default function Index() {
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -55,11 +64,11 @@ export default function Index() {
             
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
               Learn Modern Tech with{' '}
-              <span className="text-primary bg-clip-text">Zyntelligence</span>
+              <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">Neurovera</span>
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-              From programming basics to AI, Cloud, and beyond. A beginner-friendly platform designed to take you from zero to industry-ready.
+              From programming basics to AI, Cloud, and beyond. A comprehensive documentation platform designed to take you from zero to industry-ready.
             </p>
             
             {/* Search Bar */}
@@ -100,6 +109,32 @@ export default function Index() {
                 <h3 className="font-semibold text-foreground text-sm mb-1">{feature.title}</h3>
                 <p className="text-xs text-muted-foreground">{feature.description}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Links */}
+      <section className="py-16 bg-muted/20">
+        <div className="container px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-foreground mb-2">Explore Neurovera</h2>
+            <p className="text-muted-foreground">Everything you need to build, learn, and grow</p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+            {quickLinks.map((link) => (
+              <Link
+                key={link.title}
+                to={link.href}
+                className="group p-4 rounded-xl bg-card border border-border hover:border-primary/50 hover:shadow-md transition-all text-center"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
+                  <link.icon className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">{link.title}</h3>
+                <p className="text-xs text-muted-foreground mt-1">{link.description}</p>
+              </Link>
             ))}
           </div>
         </div>
@@ -163,7 +198,7 @@ export default function Index() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Start Learning?</h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Join thousands of learners mastering programming and modern tech skills.
+              Join thousands of developers mastering programming and modern tech skills with Neurovera.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
@@ -186,21 +221,23 @@ export default function Index() {
         <div className="container px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">Z</span>
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
+                <span className="text-primary-foreground font-bold">N</span>
               </div>
-              <span className="font-bold text-foreground">Zyntelligence</span>
+              <span className="font-bold text-foreground">Neurovera Docs</span>
             </div>
             
             <nav className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
               <Link to="/getting-started" className="hover:text-foreground transition-colors">Getting Started</Link>
               <Link to="/docs/python/introduction" className="hover:text-foreground transition-colors">Documentation</Link>
+              <Link to="/api-reference" className="hover:text-foreground transition-colors">API Reference</Link>
+              <Link to="/tutorials" className="hover:text-foreground transition-colors">Tutorials</Link>
               <Link to="/resources" className="hover:text-foreground transition-colors">Resources</Link>
               <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
             </nav>
             
             <p className="text-sm text-muted-foreground">
-              © 2026 Zyntelligence. Free and open for learning.
+              © 2026 Neurovera. Open source and free for everyone.
             </p>
           </div>
         </div>

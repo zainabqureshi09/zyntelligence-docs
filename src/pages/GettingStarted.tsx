@@ -73,7 +73,7 @@ export default function GettingStarted() {
           </div>
           
           <h1 className="text-4xl font-bold text-foreground mb-4 tracking-tight">
-            Getting Started with Zyntelligence
+            Getting Started with Neurovera
           </h1>
           
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
@@ -163,7 +163,7 @@ export default function GettingStarted() {
             title="hello.py"
             code={`# Your first Python program
 name = input("What is your name? ")
-print(f"Hello, {name}! Welcome to programming!")
+print(f"Hello, {name}! Welcome to Neurovera!")
 
 # Calculate something simple
 age = int(input("How old are you? "))

@@ -36,11 +36,13 @@
 
     --radius: 0.5rem;
 
-    /* Zyntelligence Custom Tokens */
+    /* Neurovera Custom Tokens */
     --navy: 222 47% 11%;
     --navy-light: 217 33% 17%;
-    --electric-blue: 217 91% 60%;
-    --electric-blue-glow: 217 91% 70%;
+    --electric-blue: 239 84% 67%;
+    --electric-blue-glow: 239 84% 77%;
+    --neurovera-primary: 239 84% 67%;
+    --neurovera-secondary: 280 70% 60%;
     --success: 142 76% 36%;
     --warning: 38 92% 50%;
     
