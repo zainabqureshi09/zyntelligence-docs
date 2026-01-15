@@ -1,3 +1,6 @@
+# Neurovera Docs - Robots.txt
+# https://neurovera-docs.vercel.app
+
 User-agent: Googlebot
 Allow: /
 
@@ -12,3 +15,24 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap location
+Sitemap: https://neurovera-docs.vercel.app/sitemap.xml
+
+# Disallow admin routes
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /auth
+
+# Allow search engines to crawl all documentation
+Allow: /docs/*
+Allow: /paths/*
+Allow: /getting-started
+Allow: /resources
+Allow: /about
+Allow: /architecture
+Allow: /api-reference
+Allow: /tutorials
+Allow: /faq
+Allow: /security
+Allow: /roadmap

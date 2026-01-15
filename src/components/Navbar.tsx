@@ -77,11 +77,11 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">Z</span>
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">N</span>
               </div>
               <span className="font-bold text-xl tracking-tight text-foreground">
-                Zyntelligence
+                Neurovera
               </span>
             </Link>
             
