@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -7,7 +8,7 @@ const corsHeaders = {
 
 // Documentation content for context
 const docsContext = `
-Zyntelligence Documentation Platform - Knowledge Base
+Neurovera Documentation Platform - Knowledge Base
 
 PYTHON:
 - Introduction: Python is a high-level, interpreted programming language known for its readability and versatility.
@@ -58,6 +59,34 @@ serve(async (req) => {
   }
 
   try {
+    // Validate authentication
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized - authentication required" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const supabase = createClient(
+      Deno.env.get('SUPABASE_URL')!,
+      Deno.env.get('SUPABASE_ANON_KEY')!,
+      { global: { headers: { Authorization: authHeader } } }
+    );
+
+    const token = authHeader.replace('Bearer ', '');
+    const { data: claimsData, error: claimsError } = await supabase.auth.getClaims(token);
+    
+    if (claimsError || !claimsData?.claims) {
+      return new Response(
+        JSON.stringify({ error: "Unauthorized - invalid token" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const userId = claimsData.claims.sub;
+    console.log("Authenticated user for doc-chat:", userId);
+
     const { messages } = await req.json();
 
     if (!messages || !Array.isArray(messages)) {
@@ -72,7 +101,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `You are Zyntelligence AI, a helpful documentation assistant for the Zyntelligence programming documentation platform.
+    const systemPrompt = `You are Neurovera AI, a helpful documentation assistant for the Neurovera programming documentation platform.
 
 Your knowledge base includes documentation for:
 - Python (introduction, syntax, variables, conditions, loops, functions, examples)
@@ -86,7 +115,7 @@ Reference Documentation:
 ${docsContext}
 
 Guidelines:
-1. Answer questions ONLY about programming topics covered in Zyntelligence documentation
+1. Answer questions ONLY about programming topics covered in Neurovera documentation
 2. Be helpful, clear, and educational
 3. Provide code examples when relevant
 4. If asked about topics outside the documentation scope, politely redirect

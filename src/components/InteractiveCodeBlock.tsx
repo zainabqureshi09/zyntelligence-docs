@@ -3,11 +3,12 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-bash';
-import { Copy, Check, Sparkles, Play, Code2, Loader2 } from 'lucide-react';
+import { Copy, Check, Sparkles, Play, Code2, Loader2, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 interface CodeVariant {
   language: string;
@@ -48,6 +49,22 @@ export function InteractiveCodeBlock({
   const [isExplaining, setIsExplaining] = useState(false);
   const [explanation, setExplanation] = useState<string | null>(null);
   const [showResponse, setShowResponse] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsAuthenticated(!!session);
+    };
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setIsAuthenticated(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
     codeRefs.current.forEach((el) => {
@@ -68,10 +85,21 @@ export function InteractiveCodeBlock({
   };
 
   const handleExplain = async () => {
+    if (!isAuthenticated) {
+      toast.error('Please sign in to use AI explanations');
+      navigate('/auth');
+      return;
+    }
+
     setIsExplaining(true);
     setExplanation(null);
 
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.access_token) {
+        throw new Error('Please sign in to use AI explanations');
+      }
+
       const { data, error } = await supabase.functions.invoke('explain-code', {
         body: { code: getCurrentCode(), language: activeTab },
       });
@@ -127,9 +155,12 @@ export function InteractiveCodeBlock({
                 onClick={handleExplain}
                 disabled={isExplaining}
                 className="h-7 px-2 text-xs hover:bg-primary/10 hover:text-primary"
+                title={isAuthenticated ? "Explain with AI" : "Sign in to use AI"}
               >
                 {isExplaining ? (
                   <Loader2 className="w-3 h-3 animate-spin mr-1" />
+                ) : !isAuthenticated ? (
+                  <Lock className="w-3 h-3 mr-1" />
                 ) : (
                   <Sparkles className="w-3 h-3 mr-1" />
                 )}
