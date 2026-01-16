@@ -2,8 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { MessageSquare, X, Send, Loader2, Bot, User, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Send, Loader2, Bot, User, Sparkles, Lock } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -17,8 +18,24 @@ export function AIChatAssistant() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Check authentication status
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsAuthenticated(!!session);
+    };
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setIsAuthenticated(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -33,11 +50,16 @@ export function AIChatAssistant() {
   }, [isOpen]);
 
   const streamChat = async (userMessages: Message[]) => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.access_token) {
+      throw new Error('Please sign in to use the AI chat');
+    }
+
     const resp = await fetch(CHAT_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        Authorization: `Bearer ${session.access_token}`,
       },
       body: JSON.stringify({ messages: userMessages }),
     });
@@ -156,19 +178,29 @@ export function AIChatAssistant() {
           <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
             <Sparkles className="w-5 h-5 text-primary" />
           </div>
-          <div>
-            <h3 className="font-semibold text-foreground">Zyntelligence AI</h3>
+        <div>
+            <h3 className="font-semibold text-foreground">Neurovera AI</h3>
             <p className="text-xs text-muted-foreground">Ask me anything about the docs</p>
           </div>
         </div>
 
         {/* Messages */}
         <ScrollArea className="h-80 p-4" ref={scrollRef}>
-          {messages.length === 0 ? (
+          {!isAuthenticated ? (
+            <div className="flex flex-col items-center justify-center h-full text-center">
+              <Lock className="w-12 h-12 text-muted-foreground/50 mb-3" />
+              <p className="text-sm text-muted-foreground">
+                Sign in to use the AI assistant
+              </p>
+              <p className="text-xs text-muted-foreground/70 mt-1">
+                <a href="/auth" className="text-primary hover:underline">Sign in</a> to ask questions about the docs
+              </p>
+            </div>
+          ) : messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <Bot className="w-12 h-12 text-muted-foreground/50 mb-3" />
               <p className="text-sm text-muted-foreground">
-                Hi! I can help you with Zyntelligence documentation.
+                Hi! I can help you with Neurovera documentation.
               </p>
               <p className="text-xs text-muted-foreground/70 mt-1">
                 Ask me about Python, JavaScript, or any topic!
@@ -228,13 +260,13 @@ export function AIChatAssistant() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask about the documentation..."
+              placeholder={isAuthenticated ? "Ask about the documentation..." : "Sign in to chat"}
               className="flex-1"
-              disabled={isLoading}
+              disabled={isLoading || !isAuthenticated}
             />
             <Button
               onClick={handleSend}
-              disabled={!input.trim() || isLoading}
+              disabled={!input.trim() || isLoading || !isAuthenticated}
               size="icon"
               className="shrink-0"
             >

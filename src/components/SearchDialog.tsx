@@ -112,8 +112,24 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   const [isAISearch, setIsAISearch] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [aiResults, setAiResults] = useState<AISearchResponse | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  // Check authentication status
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsAuthenticated(!!session);
+    };
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setIsAuthenticated(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   // Regular fuzzy search results
   const fuzzyResults = useMemo(() => {
@@ -132,10 +148,29 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   const performAISearch = useCallback(async (searchQuery: string) => {
     if (!searchQuery.trim() || searchQuery.length < 5) return;
     
+    if (!isAuthenticated) {
+      toast({
+        title: 'Sign in required',
+        description: 'Please sign in to use AI search.',
+        variant: 'destructive'
+      });
+      return;
+    }
+    
     setIsLoading(true);
     setAiResults(null);
     
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.access_token) {
+        toast({
+          title: 'Sign in required',
+          description: 'Please sign in to use AI search.',
+          variant: 'destructive'
+        });
+        return;
+      }
+
       const { data, error } = await supabase.functions.invoke('ai-search', {
         body: { query: searchQuery }
       });
@@ -156,7 +191,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
     } finally {
       setIsLoading(false);
     }
-  }, [toast]);
+  }, [toast, isAuthenticated]);
 
   // Trigger AI search when user types a natural language query
   useEffect(() => {
@@ -234,15 +269,23 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
               autoFocus
             />
             <button
-              onClick={() => setIsAISearch(!isAISearch)}
+              onClick={() => {
+                if (!isAuthenticated) {
+                  navigate('/auth');
+                  onOpenChange(false);
+                } else {
+                  setIsAISearch(!isAISearch);
+                }
+              }}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
                 isAISearch 
                   ? 'bg-primary text-primary-foreground' 
                   : 'bg-muted text-muted-foreground hover:bg-accent'
               }`}
+              title={isAuthenticated ? "Toggle AI search" : "Sign in for AI search"}
             >
               <Sparkles className="h-3 w-3" />
-              AI
+              {isAuthenticated ? 'AI' : 'AI (Sign in)'}
             </button>
             <kbd className="hidden sm:inline-flex h-5 items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
               ESC
