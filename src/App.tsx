@@ -75,13 +75,6 @@ import Tutorials from "./pages/Tutorials";
 import FAQ from "./pages/FAQ";
 import Security from "./pages/Security";
 import Roadmap from "./pages/Roadmap";
-import DeepLearning from "./pages/paths/ai-ml/DeepLearning";
-import AIMLProjects from "./pages/paths/ai-ml/Projects";
-
-// Pages
-import GettingStarted from "./pages/GettingStarted";
-import Resources from "./pages/Resources";
-import About from "./pages/About";
 
 // Admin
 import AdminDashboard from "./pages/admin/Dashboard";
