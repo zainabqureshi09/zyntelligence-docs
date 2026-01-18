@@ -8,7 +8,7 @@ const corsHeaders = {
 
 // Documentation content for context
 const docsContext = `
-Neurovera Documentation Platform - Knowledge Base
+Zerovex Documentation Platform - Knowledge Base
 
 PYTHON:
 - Introduction: Python is a high-level, interpreted programming language known for its readability and versatility.
@@ -101,7 +101,7 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `You are Neurovera AI, a helpful documentation assistant for the Neurovera programming documentation platform.
+    const systemPrompt = `You are Zerovex AI, a helpful documentation assistant for the Zerovex programming documentation platform.
 
 Your knowledge base includes documentation for:
 - Python (introduction, syntax, variables, conditions, loops, functions, examples)
@@ -115,7 +115,7 @@ Reference Documentation:
 ${docsContext}
 
 Guidelines:
-1. Answer questions ONLY about programming topics covered in Neurovera documentation
+1. Answer questions ONLY about programming topics covered in Zerovex documentation
 2. Be helpful, clear, and educational
 3. Provide code examples when relevant
 4. If asked about topics outside the documentation scope, politely redirect

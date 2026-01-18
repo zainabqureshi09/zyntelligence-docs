@@ -1,15 +1,13 @@
-# Future IT Documentation
+# Zerovex Docs
 
-Future IT Documentation is a comprehensive, open-source learning platform focused on **modern and future-ready IT fields**.  
+**Zerovex Docs** is a comprehensive, open-source developer documentation platform focused on **modern and future-ready IT fields**.  
 It is designed to help **students, beginners, and developers** learn complex technologies **from absolute beginner to advanced level** using structured documentation, real-world examples, and practical guidance.
-
-This project aims to bridge the gap between **theory and industry-ready skills**.
 
 ---
 
 ## 🌐 Live Website
 
-**Website:** [https://zyntelligence.com ](https://zyntelligence-docs.vercel.app/) 
+**Website:** [https://zerovex-docs.vercel.app](https://zerovex-docs.vercel.app)
 
 ---
 
@@ -21,7 +19,7 @@ Technology evolves rapidly, but quality learning resources are often:
 - Too theoretical
 - Not aligned with real-world career paths
 
-**Future IT Documentation** solves this by providing:
+**Zerovex Docs** solves this by providing:
 - Clear explanations starting from fundamentals
 - Step-by-step learning paths
 - Practical examples and projects
@@ -48,10 +46,10 @@ By using this documentation, learners should be able to:
 This documentation focuses on high-growth IT domains:
 
 ### 🔹 Core & Foundational Skills
-- Programming fundamentals
+- Programming fundamentals (Python, JavaScript, Java, C++)
+- HTML & CSS
 - Data structures & algorithms
 - Computer networks
-- Operating systems
 - Databases & SQL
 - Git & version control
 
@@ -71,37 +69,6 @@ This documentation focuses on high-growth IT domains:
 
 ---
 
-## 🧭 Learning Approach
-
-Each topic is structured using a **progressive learning model**:
-
-1. **Introduction & Basics**
-   - What it is
-   - Why it matters
-   - Real-world use cases
-
-2. **Core Concepts**
-   - Key terminology
-   - Architecture & workflows
-   - Visual explanations (where applicable)
-
-3. **Hands-on Practice**
-   - Examples
-   - Code snippets
-   - Mini-projects
-
-4. **Advanced Concepts**
-   - Best practices
-   - Performance & scalability
-   - Industry patterns
-
-5. **Career Guidance**
-   - Job roles
-   - Required skills
-   - Learning roadmaps
-
----
-
 ## 🛠️ Tech Stack
 
 This project uses a modern, scalable, and developer-friendly stack:
@@ -111,6 +78,7 @@ This project uses a modern, scalable, and developer-friendly stack:
 - **TypeScript** – Type-safe development
 - **Tailwind CSS** – Utility-first styling
 - **shadcn/ui** – Reusable UI components
+- **Supabase** – Backend as a service (database, auth, edge functions)
 
 ---
 
@@ -122,137 +90,77 @@ This project uses a modern, scalable, and developer-friendly stack:
 - npm or pnpm
 - Git
 
-> Recommended: Install Node.js using **nvm**  
-> https://github.com/nvm-sh/nvm
-
----
-
 ### Installation Steps
 
+```bash
 # Clone the repository
-git clone https://github.com/zainabqureshi09/Zyntelligence-book
+git clone https://github.com/your-repo/zerovex-docs
 
 # Navigate into the project
-cd <YOUR_PROJECT_NAME>
+cd zerovex-docs
 
 # Install dependencies
 npm install
 
 # Start the development server
 npm run dev
+```
 
-The application will be available at:
+The application will be available at: `http://localhost:8080`
 
-http://localhost:8080
+---
 
-📁 Project Structure (High-Level)
+## 📁 Project Structure
 
+```
 src/
  ├── components/     # Reusable UI components
  ├── pages/          # Documentation pages
- ├── content/        # Markdown / docs content
  ├── hooks/          # Custom React hooks
- ├── styles/         # Global styles
- ├── utils/          # Helper utilities
+ ├── contexts/       # React contexts
+ ├── integrations/   # External service integrations
  └── main.tsx        # Application entry point
+```
 
-📦 Deployment
+---
 
-You can deploy this project on any modern hosting platform:
+## 📦 Deployment
 
-Recommended Platforms
+This project is optimized for deployment on Vercel.
 
-Vercel
-
-Netlify
-
-Cloudflare Pages
-
-AWS / DigitalOcean
-
+```bash
 npm run build
+```
 
-The optimized output will be generated in the dist/ directory.
+The optimized output will be generated in the `dist/` directory.
 
-🤝 Contributing
+---
+
+## 🤝 Contributing
 
 Contributions are welcome and encouraged!
 
 You can contribute by:
+- Fixing typos or improving explanations
+- Adding new documentation topics
+- Improving UI/UX
+- Optimizing performance
+- Reporting bugs or issues
 
-Fixing typos or improving explanations
+---
 
-Adding new documentation topics
+## 👤 Author
 
-Improving UI/UX
+**Zainab Ayaz**  
+Creator & Maintainer of Zerovex Docs
 
-Optimizing performance
+- GitHub: [https://github.com/zainabqureshi09](https://github.com/zainabqureshi09)
+- LinkedIn: [https://linkedin.com/in/zainab0x7](https://linkedin.com/in/zainab0x7)
+- Twitter/X: [https://x.com/zainab_0x7](https://x.com/zainab_0x7)
 
-Reporting bugs or issues
+---
 
-Contribution Workflow
-
-Fork the repository
-
-Create a feature branch
-
-Make your changes
-
-Commit with a clear message
-
-Open a pull request
-
-🧩 Future Roadmap
-
-Planned improvements include:
-
-Interactive coding examples
-
-Search functionality
-
-Learning progress tracking
-
-Community contributions
-
-Multilingual documentation
-
-Certification-ready learning paths
-
-👤 Author
-
-# Zainab Ayaz
-
-Creator & Maintainer of Future IT Documentation
-
-GitHub: https://github.com/zainabqureshi09
-
-LinkedIn: https://linkedin.com/in/zainab0x7
-
-Twitter/X: https://x.com/zainab_0x7
-
-Email: zainab.cyber.dev@gmail.com
-
-📄 License
+## 📄 License
 
 This project is licensed under the MIT License.
 You are free to use, modify, and distribute this project with attribution.
-
-
----
-
-## ✅ Why This README Is Strong
-- Looks **professional & mature**
-- Explains **vision, structure, and purpose**
-- SEO-friendly wording
-- Suitable for **open-source & production**
-- Scales as your docs grow
-
----
-
-If you want next:
-- A **CONTRIBUTING.md**
-- A **ROADMAP.md**
-- A **docs content template**
-- GitHub badges (stars, license, build)
-
-Just say the word 🚀

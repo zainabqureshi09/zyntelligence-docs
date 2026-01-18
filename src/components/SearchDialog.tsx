@@ -91,9 +91,9 @@ const searchData: SearchItem[] = [
   { title: 'AI/ML Projects', description: 'Hands-on AI projects', href: '/paths/ai-ml/projects', category: 'Learning Paths', icon: 'path' },
   
   // Pages
-  { title: 'Getting Started', description: 'Quick start guide for Zyntelligence', href: '/getting-started', category: 'Guides', icon: 'guide' },
+  { title: 'Getting Started', description: 'Quick start guide for Zerovex', href: '/getting-started', category: 'Guides', icon: 'guide' },
   { title: 'Resources', description: 'Cheat sheets and downloadable assets', href: '/resources', category: 'Guides', icon: 'guide' },
-  { title: 'About', description: 'About Zyntelligence and the creator', href: '/about', category: 'Guides', icon: 'guide' },
+  { title: 'About', description: 'About Zerovex and the creator', href: '/about', category: 'Guides', icon: 'guide' },
 ];
 
 const fuse = new Fuse(searchData, {
