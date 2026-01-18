@@ -136,7 +136,7 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: `You are a helpful documentation search assistant for Neurovera, a programming learning platform.
+            content: `You are a helpful documentation search assistant for Zerovex, a programming learning platform.
 
 Your job is to understand user queries in natural language and find the most relevant documentation pages.
 
