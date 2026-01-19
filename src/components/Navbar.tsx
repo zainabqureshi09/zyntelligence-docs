@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Moon, Sun, Menu, X, Search, Github, User, Shield, LogOut } from 'lucide-react';
 import { useTheme } from '@/lib/theme';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { SearchDialog } from '@/components/SearchDialog';
 import { useAuth } from '@/contexts/AuthContext';
@@ -31,7 +31,7 @@ function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" aria-label="User menu">
           <User className="h-5 w-5" />
         </Button>
       </DropdownMenuTrigger>
@@ -63,20 +63,38 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
-  const handleSearchClick = () => {
+  const handleSearchClick = useCallback(() => {
     if (onSearchOpen) {
       onSearchOpen();
     } else {
       setSearchOpen(true);
     }
-  };
+  }, [onSearchOpen]);
+
+  // Keyboard shortcut for search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        handleSearchClick();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleSearchClick]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, []);
 
   return (
     <>
       <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-6">
-            <Link to="/" className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2" aria-label="Zerovex Docs Home">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
                 <span className="text-white font-bold text-lg">Z</span>
               </div>
@@ -85,7 +103,7 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
               </span>
             </Link>
             
-            <nav className="hidden md:flex items-center gap-6">
+            <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
               <Link to="/getting-started" className="nav-link">
                 Getting Started
               </Link>
@@ -107,6 +125,7 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
               size="icon" 
               className="hidden md:flex"
               onClick={handleSearchClick}
+              aria-label="Search documentation"
             >
               <Search className="h-5 w-5" />
             </Button>
@@ -116,13 +135,19 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
               target="_blank" 
               rel="noopener noreferrer"
               className="hidden md:flex"
+              aria-label="View on GitHub"
             >
               <Button variant="ghost" size="icon">
                 <Github className="h-5 w-5" />
               </Button>
             </a>
             
-            <Button variant="ghost" size="icon" onClick={toggleTheme}>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
               {theme === 'dark' ? (
                 <Sun className="h-5 w-5" />
               ) : (
@@ -137,6 +162,8 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
               size="icon"
               className="md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -145,8 +172,11 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border bg-background p-4 animate-fade-in">
-            <nav className="flex flex-col gap-2">
+          <nav 
+            className="md:hidden border-t border-border bg-background p-4 animate-fade-in"
+            aria-label="Mobile navigation"
+          >
+            <div className="flex flex-col gap-2">
               <button
                 onClick={() => {
                   handleSearchClick();
@@ -185,8 +215,8 @@ export function Navbar({ onSearchOpen }: NavbarProps) {
               >
                 About
               </Link>
-            </nav>
-          </div>
+            </div>
+          </nav>
         )}
       </header>
       

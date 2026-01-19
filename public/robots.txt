@@ -1,5 +1,5 @@
-# Neurovera Docs - Robots.txt
-# https://neurovera-docs.vercel.app
+# Zerovex Docs - Robots.txt
+# https://zerovex-docs.vercel.app
 
 User-agent: Googlebot
 Allow: /
@@ -17,7 +17,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://neurovera-docs.vercel.app/sitemap.xml
+Sitemap: https://zerovex-docs.vercel.app/sitemap.xml
 
 # Disallow admin routes
 Disallow: /admin

@@ -3,324 +3,322 @@
   <!-- Main Pages -->
   <url>
     <loc>https://zerovex-docs.vercel.app/</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/getting-started</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zerovex-docs.vercel.app/resources</loc>
-    <lastmod>2026-01-18</lastmod>
+    <loc>https://zerovex-docs.vercel.app/about</loc>
+    <lastmod>2026-01-19</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zerovex-docs.vercel.app/resources</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zerovex-docs.vercel.app/about</loc>
-    <lastmod>2026-01-18</lastmod>
+    <loc>https://zerovex-docs.vercel.app/tutorials</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zerovex-docs.vercel.app/faq</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zerovex-docs.vercel.app/security</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zerovex-docs.vercel.app/roadmap</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zerovex-docs.vercel.app/architecture</loc>
+    <lastmod>2026-01-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zerovex-docs.vercel.app/api-reference</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Python Documentation -->
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/python/introduction</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/python/syntax</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/python/variables</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/python/conditions</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/python/loops</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/python/functions</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/python/examples</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- JavaScript Documentation -->
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/javascript/introduction</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/javascript/syntax</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/javascript/variables</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/javascript/conditions</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/javascript/loops</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/javascript/functions</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/javascript/examples</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- HTML Documentation -->
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/html/introduction</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/html/elements</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/html/attributes</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/html/examples</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- CSS Documentation -->
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/css/introduction</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/css/selectors</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/css/properties</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/css/examples</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- C++ Documentation -->
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/cpp/introduction</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/cpp/syntax</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/cpp/variables</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/cpp/conditions</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/cpp/loops</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/cpp/functions</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/cpp/examples</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Java Documentation -->
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/java/introduction</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/java/syntax</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/java/variables</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/java/conditions</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/java/loops</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/java/functions</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/docs/java/examples</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- AI/ML Learning Path -->
   <url>
     <loc>https://zerovex-docs.vercel.app/paths/ai-ml/introduction</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/paths/ai-ml/math-foundations</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/paths/ai-ml/supervised-learning</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/paths/ai-ml/deep-learning</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zerovex-docs.vercel.app/paths/ai-ml/projects</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- New Pages -->
-  <url>
-    <loc>https://zerovex-docs.vercel.app/architecture</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://zerovex-docs.vercel.app/api-reference</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://zerovex-docs.vercel.app/tutorials</loc>
-    <lastmod>2026-01-18</lastmod>
+    <lastmod>2026-01-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://zerovex-docs.vercel.app/faq</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zerovex-docs.vercel.app/security</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://zerovex-docs.vercel.app/roadmap</loc>
-    <lastmod>2026-01-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
   </url>
 </urlset>
