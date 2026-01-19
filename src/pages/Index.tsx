@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { WhatsNew } from '@/components/WhatsNew';
+import { SEOHead } from '@/components/SEOHead';
 import { ArrowRight, BookOpen, Code, Zap, Brain, Rocket, Shield, Cloud, Database, Globe, Cpu, Layers, Search, Star, FileCode, Lock, Map, HelpCircle, TrendingUp, Users, Award, Play, CheckCircle, GraduationCap, Lightbulb, Copy, Terminal, Layout, Palette, Box, Wrench, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, memo } from 'react';
 import { SearchDialog } from '@/components/SearchDialog';
 
 const languages = [
@@ -135,9 +136,16 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar onSearchOpen={() => setSearchOpen(true)} />
-      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
+    <>
+      <SEOHead 
+        title="Zerovex Docs | Free Programming Tutorials & Developer Documentation"
+        description="Learn HTML, CSS, JavaScript, Python, and more with free tutorials, references, and examples. The world's largest developer documentation site."
+        keywords="programming tutorials, web development, HTML, CSS, JavaScript, Python, coding, learn to code, developer documentation"
+        canonical="https://zerovex-docs.vercel.app/"
+      />
+      <div className="min-h-screen bg-background">
+        <Navbar onSearchOpen={() => setSearchOpen(true)} />
+        <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden">
@@ -605,6 +613,7 @@ export default function Index() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }
